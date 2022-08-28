@@ -53,38 +53,64 @@ class NoteScreen extends StatelessWidget {
                       note: controller.noteModel[index],
                     ));
                   },
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          overflow: TextOverflow.ellipsis,
-                          note[index].name ??= "",
-                          style: const TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                            overflow: TextOverflow.ellipsis,
-                            note[index].notes ??= "",
-                            style: const TextStyle(
-                              fontSize: 20,
-                            )),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                            overflow: TextOverflow.ellipsis,
-                            note[index].date ??= "",
-                            style: const TextStyle(
-                              fontSize: 20,
-                            )),
-                      ],
-                    ),
+                  child: Obx(
+                    () => Stack(
+
+                        // padding: const EdgeInsets.all(20.0),
+                        children: [
+                          Positioned(
+                            bottom: 0,
+                            left: 0,
+                            child: IconButton(
+                                onPressed: () {
+                                  dialog(
+                                    title: "delete".tr,
+                                    content: "deleteDetail".tr,
+                                    confirm: () {
+                                      //  controller.deleteNote(note[index]);
+                                      Get.back();
+                                    },
+                                  );
+                                },
+                                icon: const Icon(Icons.delete_rounded)),
+                          ),
+                          Positioned(
+                            top: 10,
+                            left: 10,
+                            right: 10,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  overflow: TextOverflow.ellipsis,
+                                  note[index].name ??= "",
+                                  style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                Text(
+                                    overflow: TextOverflow.ellipsis,
+                                    note[index].notes ??= "",
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                    )),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                Text(
+                                    overflow: TextOverflow.ellipsis,
+                                    note[index].date ??= "",
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                    )),
+                              ],
+                            ),
+                          ),
+                        ]),
                   ),
                 ),
               );
@@ -107,6 +133,21 @@ class NoteScreen extends StatelessWidget {
         tooltip: 'add',
         child: const Icon(Icons.add),
       ),
+    );
+  }
+
+  dialog(
+      {required String title,
+      required String content,
+      required VoidCallback confirm}) {
+    return Get.defaultDialog(
+      onConfirm: confirm,
+      title: title,
+      content: Text(content),
+      radius: 8,
+      textCancel: "no".tr,
+      textConfirm: "yes".tr,
+      barrierDismissible: true,
     );
   }
 

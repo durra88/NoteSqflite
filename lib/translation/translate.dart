@@ -15,6 +15,10 @@ class Translate extends Translations {
           'english': "English",
           'darkMode': "Dark mode",
           'lightMode': "Light mode",
+          'yes': "Yes",
+          'no': "No",
+          "delete": "Delete Note",
+          "deleteDetail": "are you sure do you want to delet this note?",
         },
         'ar_AR': {
           'note': "ملحوظة",
@@ -28,6 +32,10 @@ class Translate extends Translations {
           'english': "English",
           'darkMode': "وضع ليلي",
           'lightMode': "وضع نهاري",
+          'yes': "نعم",
+          'no': "لا",
+          "delete": "مسح الملحوظة",
+          "deleteDetail": "هل تريد ان تمسح هذه الملحوظة؟"
         }
       };
 }
